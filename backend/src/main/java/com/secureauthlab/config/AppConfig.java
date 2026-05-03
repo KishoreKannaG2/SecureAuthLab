@@ -40,7 +40,7 @@ public class AppConfig {
     @Bean
     public CorsConfigurationSource corsSource() {
         CorsConfiguration cfg = new CorsConfiguration();
-        cfg.setAllowedOrigins(List.of("http://localhost:5173", "http://127.0.0.1:5173"));
+        cfg.setAllowedOrigins(List.of("https://secureauthlab.netlify.app"));
         cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         cfg.setAllowedHeaders(List.of("*"));
         cfg.setAllowCredentials(true);
