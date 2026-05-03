@@ -6,12 +6,27 @@ public class Dto {
 
     @Data
     public static class LoginRequest {
+            // Explicit getters and setters for compatibility
+            public String getUsername() { return username; }
+            public void setUsername(String username) { this.username = username; }
+            public String getPassword() { return password; }
+            public void setPassword(String password) { this.password = password; }
         private String username;
         private String password;
     }
 
     @Data
     public static class LoginResponse {
+            public boolean isSuccess() { return success; }
+            public void setSuccess(boolean success) { this.success = success; }
+            public String getMessage() { return message; }
+            public void setMessage(String message) { this.message = message; }
+            public String getToken() { return token; }
+            public void setToken(String token) { this.token = token; }
+            public String getUsername() { return username; }
+            public void setUsername(String username) { this.username = username; }
+            public long getLockSeconds() { return lockSeconds; }
+            public void setLockSeconds(long lockSeconds) { this.lockSeconds = lockSeconds; }
         private boolean success;
         private String  message;
         private String  token;
@@ -45,6 +60,14 @@ public class Dto {
 
     @Data
     public static class AttackRequest {
+            public String getTargetUsername() { return targetUsername; }
+            public void setTargetUsername(String targetUsername) { this.targetUsername = targetUsername; }
+            public String getMode() { return mode; }
+            public void setMode(String mode) { this.mode = mode; }
+            public int getDelayMs() { return delayMs; }
+            public void setDelayMs(int delayMs) { this.delayMs = delayMs; }
+            public int getMaxAttempts() { return maxAttempts; }
+            public void setMaxAttempts(int maxAttempts) { this.maxAttempts = maxAttempts; }
         private String  targetUsername;
         private String  mode;          // "dictionary" or "charset"
         private int     delayMs;
@@ -53,6 +76,20 @@ public class Dto {
 
     @Data
     public static class AttackStatus {
+            public boolean isRunning() { return running; }
+            public void setRunning(boolean running) { this.running = running; }
+            public int getAttempts() { return attempts; }
+            public void setAttempts(int attempts) { this.attempts = attempts; }
+            public String getCurrentPassword() { return currentPassword; }
+            public void setCurrentPassword(String currentPassword) { this.currentPassword = currentPassword; }
+            public boolean isCracked() { return cracked; }
+            public void setCracked(boolean cracked) { this.cracked = cracked; }
+            public String getCrackedPassword() { return crackedPassword; }
+            public void setCrackedPassword(String crackedPassword) { this.crackedPassword = crackedPassword; }
+            public long getElapsedMs() { return elapsedMs; }
+            public void setElapsedMs(long elapsedMs) { this.elapsedMs = elapsedMs; }
+            public String getStatus() { return status; }
+            public void setStatus(String status) { this.status = status; }
         private boolean  running;
         private int      attempts;
         private String   currentPassword;
@@ -64,6 +101,20 @@ public class Dto {
 
     @Data
     public static class DashboardStats {
+            public long getTotalAttempts() { return totalAttempts; }
+            public void setTotalAttempts(long totalAttempts) { this.totalAttempts = totalAttempts; }
+            public long getFailedAttempts() { return failedAttempts; }
+            public void setFailedAttempts(long failedAttempts) { this.failedAttempts = failedAttempts; }
+            public long getSuccessfulLogins() { return successfulLogins; }
+            public void setSuccessfulLogins(long successfulLogins) { this.successfulLogins = successfulLogins; }
+            public long getSimulationAttempts() { return simulationAttempts; }
+            public void setSimulationAttempts(long simulationAttempts) { this.simulationAttempts = simulationAttempts; }
+            public long getLockedAccounts() { return lockedAccounts; }
+            public void setLockedAccounts(long lockedAccounts) { this.lockedAccounts = lockedAccounts; }
+            public java.util.List<HourBucket> getAttemptsOverTime() { return attemptsOverTime; }
+            public void setAttemptsOverTime(java.util.List<HourBucket> attemptsOverTime) { this.attemptsOverTime = attemptsOverTime; }
+            public java.util.List<String> getRecentLogs() { return recentLogs; }
+            public void setRecentLogs(java.util.List<String> recentLogs) { this.recentLogs = recentLogs; }
         private long totalAttempts;
         private long failedAttempts;
         private long successfulLogins;
@@ -75,6 +126,12 @@ public class Dto {
 
     @Data
     public static class HourBucket {
+            public String getTime() { return time; }
+            public void setTime(String time) { this.time = time; }
+            public long getFailed() { return failed; }
+            public void setFailed(long failed) { this.failed = failed; }
+            public long getSuccess() { return success; }
+            public void setSuccess(long success) { this.success = success; }
         private String time;
         private long   failed;
         private long   success;
