@@ -25,19 +25,19 @@ api.interceptors.response.use(
 )
 
 export const authAPI = {
-  login:  (username, password) => api.post('/auth/login', { username, password }),
-  logout: ()                   => api.post('/auth/logout'),
+  login:  (username, password) => api.post('/api/auth/login', { username, password }),
+  logout: ()                   => api.post('/api/auth/logout'),
 }
 
 export const monitorAPI = {
-  getStats:    () => api.get('/monitor/stats'),
-  getAttempts: () => api.get('/monitor/attempts'),
+  getStats:    () => api.get('/api/monitor/stats'),
+  getAttempts: () => api.get('/api/monitor/attempts'),
 }
 
 export const attackAPI = {
-  start:     (payload) => api.post('/attack/start', payload),
-  stop:      ()        => api.post('/attack/stop'),
-  getStatus: ()        => api.get('/attack/status'),
+  start:     (payload) => api.post('/api/attack/start', payload),
+  stop:      ()        => api.post('/api/attack/stop'),
+  getStatus: ()        => api.get('/api/attack/status'),
 }
 
 export const securityAPI = {
