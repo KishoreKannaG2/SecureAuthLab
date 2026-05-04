@@ -17,7 +17,11 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-          <Route index              element={<Navigate to="/dashboard" replace />} />
+          <Route index element={
+            localStorage.getItem('token')
+              ? <Navigate to="/dashboard" replace />
+              : <Navigate to="/login" replace />
+          } />
           <Route path="dashboard"   element={<DashboardPage />} />
           <Route path="attack"      element={<AttackPage />} />
           <Route path="security"    element={<SecurityPage />} />
