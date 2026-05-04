@@ -45,4 +45,8 @@ export const securityAPI = {
   updateConfig: (config) => api.put('/security/config', config),
 }
 
+export const sampleDataAPI = {
+  getAll: () => api.get('/api/auth/data'),
+}
+
 export default api

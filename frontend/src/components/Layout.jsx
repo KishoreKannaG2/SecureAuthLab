@@ -3,10 +3,11 @@ import { Shield, LayoutDashboard, Zap, Settings, FileText, LogOut } from 'lucide
 import { authAPI } from '../services/api.js'
 
 const nav = [
-  { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { to: '/attack',    icon: Zap,             label: 'Attack Sim'  },
-  { to: '/security',  icon: Settings,        label: 'Security'    },
-  { to: '/logs',      icon: FileText,        label: 'Logs'        },
+  { to: '/dashboard',   icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/attack',      icon: Zap,             label: 'Attack Sim'  },
+  { to: '/security',    icon: Settings,        label: 'Security'    },
+  { to: '/logs',        icon: FileText,        label: 'Logs'        },
+  { to: '/sample-data', icon: ShieldOff,       label: 'Sample Data' },
 ]
 
 export default function Layout() {
