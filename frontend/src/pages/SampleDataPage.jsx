@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { sampleDataAPI } from '../services/api.js'
-
 export default function SampleDataPage() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
