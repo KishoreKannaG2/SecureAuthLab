@@ -89,7 +89,7 @@ export default function ChangePasswordPage() {
         <input
           type={showPasswords[field] ? 'text' : 'password'}
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={onChange}
           placeholder={placeholder}
           className="w-full px-4 py-2 bg-cyber-panel border border-cyber-border rounded-lg text-cyber-text placeholder-cyber-border focus:outline-none focus:ring-2 focus:ring-cyber-accent transition"
         />
@@ -134,7 +134,7 @@ export default function ChangePasswordPage() {
             label="Current Password"
             field="old"
             value={oldPassword}
-            onChange={setOldPassword}
+            onChange={e => setOldPassword(e.target.value)}
             placeholder="Enter your current password"
           />
 
@@ -157,7 +157,7 @@ export default function ChangePasswordPage() {
             label="New Password"
             field="new"
             value={newPassword}
-            onChange={setNewPassword}
+            onChange={e => setNewPassword(e.target.value)}
             placeholder="Enter your new password"
           />
 
@@ -165,7 +165,7 @@ export default function ChangePasswordPage() {
             label="Confirm New Password"
             field="confirm"
             value={confirmPassword}
-            onChange={setConfirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
             placeholder="Confirm your new password"
           />
 
