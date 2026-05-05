@@ -161,7 +161,7 @@ export default function SampleDataPage() {
                       ? movie.countries[0]
                       : typeof movie.countries === 'string' && movie.countries
                         ? movie.countries
-                        : movie.country || 'N/A'}
+                        : movie.countries || 'N/A'}
                   </td>
                   <td className="px-4 py-3 text-cyber-text max-w-md text-xs line-clamp-2">{movie.plot || 'N/A'}</td>
                 </tr>
