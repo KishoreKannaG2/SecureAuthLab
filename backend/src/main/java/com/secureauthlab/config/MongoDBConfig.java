@@ -13,6 +13,13 @@ public class MongoDBConfig {
     @Autowired
     private MongoClient mongoClient;
 
+    // Default template for main app database (secureauthlab)
+    @Bean
+    public MongoTemplate mongoTemplate() {
+        return new MongoTemplate(mongoClient, "secureauthlab");
+    }
+
+    // Template for sample_mflix database
     @Bean
     public MongoTemplate sampleMflixTemplate() {
         return new MongoTemplate(mongoClient, "sample_mflix");
