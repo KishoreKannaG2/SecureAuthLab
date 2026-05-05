@@ -134,8 +134,8 @@ export default function SampleDataPage() {
                   <td className="px-4 py-3 text-cyber-accent font-semibold max-w-xs truncate">{movie.title || 'N/A'}</td>
                   <td className="px-4 py-3 text-cyber-text">{movie.year || 'N/A'}</td>
                   <td className="px-4 py-3 text-cyber-text">
-                    <span className={`px-2 py-1 rounded ${movie.imdbRating ? (movie.imdbRating >= 7 ? 'bg-green-900 text-green-300' : movie.imdbRating >= 5 ? 'bg-yellow-900 text-yellow-300' : 'bg-red-900 text-red-300') : 'text-cyber-border'}`}>
-                      {movie.imdbRating ? movie.imdbRating.toFixed(1) : 'N/A'}
+                    <span className={`px-2 py-1 rounded ${movie.imdb && typeof movie.imdb.rating === 'number' ? (movie.imdb.rating >= 7 ? 'bg-green-900 text-green-300' : movie.imdb.rating >= 5 ? 'bg-yellow-900 text-yellow-300' : 'bg-red-900 text-red-300') : 'text-cyber-border'}`}>
+                      {movie.imdb && typeof movie.imdb.rating === 'number' ? movie.imdb.rating.toFixed(1) : 'N/A'}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-cyber-text max-w-xs truncate">{movie.director || 'N/A'}</td>
@@ -156,7 +156,13 @@ export default function SampleDataPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-cyber-text">{movie.runtime ? `${movie.runtime}m` : 'N/A'}</td>
-                  <td className="px-4 py-3 text-cyber-text">{movie.country || 'N/A'}</td>
+                  <td className="px-4 py-3 text-cyber-text">
+                    {Array.isArray(movie.countries) && movie.countries.length > 0
+                      ? movie.countries[0]
+                      : typeof movie.countries === 'string' && movie.countries
+                        ? movie.countries
+                        : movie.country || 'N/A'}
+                  </td>
                   <td className="px-4 py-3 text-cyber-text max-w-md text-xs line-clamp-2">{movie.plot || 'N/A'}</td>
                 </tr>
               ))}
