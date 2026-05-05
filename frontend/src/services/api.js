@@ -12,13 +12,17 @@ api.interceptors.request.use((config) => {
   return config
 })
 
-// Redirect to login on 401
+// Redirect to login on 401 only for authenticated requests (not on login page)
 api.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      localStorage.removeItem('token')
-      window.location.href = '/login'
+      const token = localStorage.getItem('token')
+      // Only redirect if user was already logged in (session expired)
+      if (token) {
+        localStorage.removeItem('token')
+        window.location.href = '/login'
+      }
     }
     return Promise.reject(err)
   }
@@ -27,6 +31,8 @@ api.interceptors.response.use(
 export const authAPI = {
   login:  (username, password) => api.post('/api/auth/login', { username, password }),
   logout: ()                   => api.post('/api/auth/logout'),
+  changePassword: (oldPassword, newPassword, confirmPassword) => 
+    api.post('/api/auth/change-password', { oldPassword, newPassword, confirmPassword }),
 }
 
 export const monitorAPI = {
@@ -41,12 +47,14 @@ export const attackAPI = {
 }
 
 export const securityAPI = {
-  getConfig:    ()       => api.get('/security/config'),
-  updateConfig: (config) => api.put('/security/config', config),
+  getConfig:    ()       => api.get('/api/security/config'),
+  updateConfig: (config) => api.put('/api/security/config', config),
 }
 
 export const sampleDataAPI = {
   getAll: () => api.get('/api/auth/data'),
+  getMovies: () => api.get('/api/auth/sample-movies'),
+  searchMovies: (title) => api.get('/api/auth/sample-movies/search', { params: { title } }),
 }
 
 export default api

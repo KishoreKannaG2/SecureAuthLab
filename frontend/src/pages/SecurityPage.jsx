@@ -45,24 +45,69 @@ export default function SecurityPage() {
   const [cfg, setCfg]       = useState(null)
   const [saved, setSaved]   = useState(false)
   const [loading, setLoad]  = useState(true)
+  const [error, setError]   = useState(null)
 
   useEffect(() => {
-    securityAPI.getConfig().then(r => { setCfg(r.data); setLoad(false) })
+    securityAPI.getConfig()
+      .then(r => { 
+        setCfg(r.data); 
+        setLoad(false);
+        setError(null);
+      })
+      .catch(err => {
+        setError('Failed to load security settings: ' + (err.message || 'Unknown error'));
+        setLoad(false);
+        console.error('Security config error:', err);
+      })
   }, [])
 
   const save = async () => {
-    await securityAPI.updateConfig(cfg)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
+    try {
+      await securityAPI.updateConfig(cfg)
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
+    } catch (err) {
+      setError('Failed to save settings: ' + (err.message || 'Unknown error'));
+    }
   }
 
   const reset = () => setCfg({ lockoutEnabled: true, maxAttempts: 5, lockoutSeconds: 60, rateLimitEnabled: true, delayMs: 0 })
 
-  if (loading || !cfg) return (
+  if (loading) return (
     <div className="flex items-center justify-center h-full">
       <div className="text-cyber-accent font-mono text-sm animate-pulse">Loading...</div>
     </div>
   )
+
+  if (error) return (
+    <div className="p-6 max-w-2xl">
+      <div className="rounded-xl border border-cyber-red/30 bg-cyber-red/10 p-6">
+        <div className="text-cyber-red font-display font-semibold mb-2">Error Loading Settings</div>
+        <div className="text-cyber-text text-sm font-mono">{error}</div>
+        <button 
+          onClick={() => {
+            setLoad(true);
+            setError(null);
+            securityAPI.getConfig()
+              .then(r => { 
+                setCfg(r.data); 
+                setLoad(false);
+                setError(null);
+              })
+              .catch(err => {
+                setError('Failed to load security settings: ' + (err.message || 'Unknown error'));
+                setLoad(false);
+              })
+          }}
+          className="mt-4 px-4 py-2 bg-cyber-accent/15 border border-cyber-accent/40 text-cyber-accent rounded-lg text-sm font-display hover:bg-cyber-accent/25 transition"
+        >
+          Retry
+        </button>
+      </div>
+    </div>
+  )
+
+  if (!cfg) return null
 
   return (
     <div className="p-6 max-w-2xl space-y-6">

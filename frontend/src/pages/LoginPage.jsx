@@ -14,8 +14,10 @@ export default function LoginPage() {
 
   // Redirect if already logged in
   useEffect(() => {
-    if (localStorage.getItem('token')) navigate('/dashboard')
-  }, [])
+    if (localStorage.getItem('token')) {
+      navigate('/dashboard', { replace: true })
+    }
+  }, [navigate])
 
   // Countdown timer
   useEffect(() => {
@@ -38,16 +40,21 @@ export default function LoginPage() {
       const res = await authAPI.login(form.username, form.password)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('username', res.data.username)
-      navigate('/dashboard')
+      navigate('/dashboard', { replace: true })
     } catch (err) {
+      // Don't navigate on error - stay on login page
       const data = err.response?.data
       if (err.response?.status === 423 || data?.lockSeconds > 0) {
         setLockSeconds(data.lockSeconds || 60)
         setError(data.message || 'Account locked.')
-      } else {
+      } else if (err.response?.status >= 400 && err.response?.status < 500) {
+        // Client errors (400, 401, etc) - show message, don't navigate
         setError(data?.message || 'Invalid credentials.')
         const match = data?.message?.match(/(\d+) attempt/)
         if (match) setAttemptsMsg(data.message)
+      } else {
+        // Server errors or network issues
+        setError(err.message || 'Connection error. Please try again.')
       }
     } finally {
       setLoading(false)
