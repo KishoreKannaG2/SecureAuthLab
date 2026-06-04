@@ -194,7 +194,7 @@ export default function ChangePasswordPage() {
           </button>
         </form>
 
-        <div className="mt-4 text-xs text-cyber-border text-center">
+        <div className="mt-4 text-xs text-cyber-accent text-center">
           💡 Keep your password secure. Never share it with anyone.
         </div>
       </div>
