@@ -151,7 +151,7 @@ export default function ChangePasswordPage() {
           />
 
           <div className="my-6 py-6 border-t border-b border-cyber-border/30">
-            <div className="text-xs text-cyber-border font-mono mb-3">PASSWORD REQUIREMENTS:</div>
+            <div className="text-xs text-cyber-accent font-mono mb-3">PASSWORD REQUIREMENTS:</div>
             <ul className="text-xs text-cyber-border space-y-1">
               <li className={newPassword.length >= 6 ? 'text-green-400' : ''}>
                 ✓ At least 6 characters
