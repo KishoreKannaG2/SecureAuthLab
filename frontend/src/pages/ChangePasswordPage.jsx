@@ -123,7 +123,7 @@ export default function ChangePasswordPage() {
           </div>
           <div>
             <h1 className="text-2xl font-display font-bold text-cyber-accent">Change Password</h1>
-            <p className="text-sm text-cyber-border">Update your account password</p>
+            <p className="text-sm text-cyber-accent">Update your account password</p>
           </div>
         </div>
 
