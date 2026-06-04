@@ -2,6 +2,40 @@ import { useState } from 'react'
 import { authAPI } from '../services/api.js'
 import { Lock, Eye, EyeOff } from 'lucide-react'
 
+function PasswordField({
+  label,
+  field,
+  value,
+  onChange,
+  placeholder,
+  showPassword,
+  onToggleVisibility,
+}) {
+  return (
+    <div className="mb-5">
+      <label className="block text-sm font-semibold text-cyber-accent mb-2">
+        {label}
+      </label>
+      <div className="relative">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          className="w-full px-4 py-2 bg-cyber-panel border border-cyber-border rounded-lg text-cyber-text placeholder-cyber-border focus:outline-none focus:ring-2 focus:ring-cyber-accent transition"
+        />
+        <button
+          type="button"
+          onClick={() => onToggleVisibility(field)}
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyber-border hover:text-cyber-accent transition"
+        >
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export default function ChangePasswordPage() {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -80,30 +114,6 @@ export default function ChangePasswordPage() {
     }))
   }
 
-  const PasswordField = ({ label, field, value, onChange, placeholder }) => (
-    <div className="mb-5">
-      <label className="block text-sm font-semibold text-cyber-accent mb-2">
-        {label}
-      </label>
-      <div className="relative">
-        <input
-          type={showPasswords[field] ? 'text' : 'password'}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className="w-full px-4 py-2 bg-cyber-panel border border-cyber-border rounded-lg text-cyber-text placeholder-cyber-border focus:outline-none focus:ring-2 focus:ring-cyber-accent transition"
-        />
-        <button
-          type="button"
-          onClick={() => togglePasswordVisibility(field)}
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyber-border hover:text-cyber-accent transition"
-        >
-          {showPasswords[field] ? <EyeOff size={18} /> : <Eye size={18} />}
-        </button>
-      </div>
-    </div>
-  )
-
   return (
     <div className="p-8">
       <div className="max-w-md mx-auto">
@@ -136,6 +146,8 @@ export default function ChangePasswordPage() {
             value={oldPassword}
             onChange={e => setOldPassword(e.target.value)}
             placeholder="Enter your current password"
+            showPassword={showPasswords.old}
+            onToggleVisibility={togglePasswordVisibility}
           />
 
           <div className="my-6 py-6 border-t border-b border-cyber-border/30">
@@ -159,6 +171,8 @@ export default function ChangePasswordPage() {
             value={newPassword}
             onChange={e => setNewPassword(e.target.value)}
             placeholder="Enter your new password"
+            showPassword={showPasswords.new}
+            onToggleVisibility={togglePasswordVisibility}
           />
 
           <PasswordField
@@ -167,6 +181,8 @@ export default function ChangePasswordPage() {
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
             placeholder="Confirm your new password"
+            showPassword={showPasswords.confirm}
+            onToggleVisibility={togglePasswordVisibility}
           />
 
           <button
