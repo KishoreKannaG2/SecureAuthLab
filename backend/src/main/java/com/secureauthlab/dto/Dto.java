@@ -170,41 +170,4 @@ public class Dto {
         private Integer runtime;
         private String country;
     }
-
-    @Data
-    public static class ChangePasswordRequest {
-            public String getOldPassword() { return oldPassword; }
-            public void setOldPassword(String oldPassword) { this.oldPassword = oldPassword; }
-            public String getNewPassword() { return newPassword; }
-            public void setNewPassword(String newPassword) { this.newPassword = newPassword; }
-            public String getConfirmPassword() { return confirmPassword; }
-            public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
-        private String oldPassword;
-        private String newPassword;
-        private String confirmPassword;
-    }
-
-    @Data
-    public static class ChangePasswordResponse {
-            public boolean isSuccess() { return success; }
-            public void setSuccess(boolean success) { this.success = success; }
-            public String getMessage() { return message; }
-            public void setMessage(String message) { this.message = message; }
-        private boolean success;
-        private String message;
-
-        public static ChangePasswordResponse success(String message) {
-            ChangePasswordResponse res = new ChangePasswordResponse();
-            res.success = true;
-            res.message = message;
-            return res;
-        }
-
-        public static ChangePasswordResponse error(String message) {
-            ChangePasswordResponse res = new ChangePasswordResponse();
-            res.success = false;
-            res.message = message;
-            return res;
-        }
-    }
 }

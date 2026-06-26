@@ -5,7 +5,6 @@ import AttackPage          from './pages/AttackPage.jsx'
 import SecurityPage        from './pages/SecurityPage.jsx'
 import LogsPage            from './pages/LogsPage.jsx'
 import SampleDataPage      from './pages/SampleDataPage.jsx'
-import ChangePasswordPage  from './pages/ChangePasswordPage.jsx'
 import Layout              from './components/Layout.jsx'
 
 const PrivateRoute = ({ children }) => {
@@ -28,7 +27,6 @@ export default function App() {
           <Route path="security"       element={<SecurityPage />} />
           <Route path="logs"           element={<LogsPage />} />
           <Route path="sample-data"    element={<SampleDataPage />} />
-          <Route path="change-password" element={<ChangePasswordPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,3 +1,4 @@
+/Users/sunderganesan/Documents/GitHub/SecureAuthLab/backend/src/main/java/com/secureauthlab/config/MongoDBConfig.java
 /Users/sunderganesan/Documents/GitHub/SecureAuthLab/backend/src/main/java/com/secureauthlab/model/LoginAttempt.java
 /Users/sunderganesan/Documents/GitHub/SecureAuthLab/backend/src/main/java/com/secureauthlab/model/User.java
 /Users/sunderganesan/Documents/GitHub/SecureAuthLab/backend/src/main/java/com/secureauthlab/dto/Dto.java

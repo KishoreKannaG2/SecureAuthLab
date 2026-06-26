@@ -2,6 +2,7 @@ com/secureauthlab/repository/SecuritySettingsRepository.class
 com/secureauthlab/SecureAuthLabApplication.class
 com/secureauthlab/model/SecuritySettings.class
 com/secureauthlab/repository/UserRepository.class
+com/secureauthlab/config/MongoDBConfig.class
 com/secureauthlab/model/LoginAttempt.class
 com/secureauthlab/dto/Dto$HourBucket.class
 com/secureauthlab/dto/Dto$LoginResponse.class
@@ -19,6 +20,7 @@ com/secureauthlab/config/AppConfig.class
 com/secureauthlab/dto/Dto$AttackRequest.class
 com/secureauthlab/dto/Dto$AttackStatus.class
 com/secureauthlab/security/JwtUtil.class
+com/secureauthlab/dto/Dto$MovieDTO.class
 com/secureauthlab/config/DataSeeder.class
 com/secureauthlab/service/AuthService.class
 com/secureauthlab/controller/MonitorController.class
